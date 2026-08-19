@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Result</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static',
+        filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    {% if error %}
+
+        <h2>{{ error }}</h2>
+
+    {% else %}
+
+    <h1>Encryption Result</h1>
+
+    <h2>
+        Plaintext:
+        {{ plaintext }}
+    </h2>
+
+    <h2>
+        Ciphertext:
+        {{ ciphertext }}
+    </h2>
+
+    <h2>
+        Decrypted:
+        {{ recovered }}
+    </h2>
+
+    <h2>Encryption Steps</h2>
+
+    {% for step in encrypt_steps %}
+
+        <pre>{{ step }}</pre>
+
+    {% endfor %}
+
+    <h2>Decryption Steps</h2>
+
+    {% for step in decrypt_steps %}
+
+        <pre>{{ step }}</pre>
+
+    {% endfor %}
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

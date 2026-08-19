@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width,
+        initial-scale=1.0"
+    >
+
+    <title>
+        Hill Cipher Security Lab
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='style.css'
+        ) }}"
+    >
+
+</head>
+
+<body>
+
+<canvas id="matrixCanvas"></canvas>
+
+<div class="overlay">
+
+    <div class="container">
+
+        <h1 class="title">
+            Secure Message Encryption
+        </h1>
+
+        <h2 class="subtitle">
+            Hill Cipher Cryptanalysis Lab
+        </h2>
+
+        <p class="description">
+
+            Interactive cybersecurity platform
+            demonstrating Hill Cipher encryption,
+            decryption, sensitivity analysis,
+            cryptanalysis, and matrix-based
+            modular arithmetic.
+
+        </p>
+
+        <div class="nav-grid">
+
+            <a href="/sensitivity"
+               class="nav-card">
+
+                Key Sensitivity Analysis
+
+            </a>
+
+            <a href="/attack"
+               class="nav-card">
+
+                Known Plaintext Attack
+
+            </a>
+
+            <a href="/performance"
+               class="nav-card">
+
+                Performance Analysis
+
+            </a>
+
+        </div>
+
+        <div class="form-container">
+
+            <h2>
+                Encryption Simulator
+            </h2>
+
+            <form
+                action="/process"
+                method="POST"
+            >
+
+                <label>
+                    Enter Plaintext
+                </label>
+
+                <textarea
+                    name="plaintext"
+                    placeholder=
+                    "Enter message..."
+                    required>
+                </textarea>
+
+                <label>
+                    Matrix Size
+                </label>
+
+                <select
+                    name="size"
+                    id="matrixSize"
+                >
+
+                    <option value="2">
+                        2 × 2
+                    </option>
+
+                    <option value="3">
+                        3 × 3
+                    </option>
+
+                </select>
+
+                <label>
+                    Enter Key Matrix Values
+                </label>
+
+                <input
+                    type="text"
+                    name="matrix"
+                    id="matrixInput"
+                    placeholder=
+                    "Example:
+                    3 3 2 5"
+                    required
+                >
+
+                <div class="matrix-help">
+
+                    <h3>
+                        Example Matrices
+                    </h3>
+
+                    <p>
+                        2×2:
+                        3 3 2 5
+                    </p>
+
+                    <p>
+                        3×3:
+                        6 24 1
+                        13 16 10
+                        20 17 15
+                    </p>
+
+                </div>
+
+                <button type="submit">
+
+                    Encrypt & Analyze
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="info-section">
+
+            <h2>
+                Encryption Formula
+            </h2>
+
+            <div class="formula-box">
+
+                C = K × P mod 26
+
+            </div>
+
+            <h2>
+                Decryption Formula
+            </h2>
+
+            <div class="formula-box">
+
+                P = K⁻¹ × C mod 26
+
+            </div>
+
+        </div>
+
+        <div class="features">
+
+            <div class="feature-card">
+
+                <h3>
+                    Encryption
+                </h3>
+
+                <p>
+                    Matrix-based secure
+                    message encryption
+                    using modular arithmetic.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>
+                    Cryptanalysis
+                </h3>
+
+                <p>
+                    Known plaintext attack
+                    simulation to recover
+                    encryption keys.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>
+                    Sensitivity Analysis
+                </h3>
+
+                <p>
+                    Avalanche effect
+                    visualization and
+                    key dependency testing.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='script.js'
+    ) }}"
+></script>
+
+</body>
+</html>

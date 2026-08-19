@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width,
+        initial-scale=1.0"
+    >
+
+    <title>
+        Known Plaintext Attack
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='style.css'
+        ) }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 class="title">
+        Known Plaintext Attack
+    </h1>
+
+    <p class="description">
+
+        This module demonstrates
+        cryptanalysis of the Hill Cipher
+        using a known plaintext attack.
+
+        The attacker attempts to recover
+        the encryption key matrix using:
+
+    </p>
+
+    <div class="formula-box">
+
+        K = C × P⁻¹ mod 26
+
+    </div>
+
+    <div class="form-container">
+
+        <form method="POST">
+
+            <label>
+                Known Plaintext
+            </label>
+
+            <input
+                type="text"
+                name="plaintext"
+                placeholder="Example: HELP"
+                required
+            >
+
+            <label>
+                Corresponding Ciphertext
+            </label>
+
+            <input
+                type="text"
+                name="ciphertext"
+                placeholder="Example: HIAT"
+                required
+            >
+
+            <label>
+                Matrix Size
+            </label>
+
+            <select name="size">
+
+                <option value="2">
+                    2 × 2
+                </option>
+
+                <option value="3">
+                    3 × 3
+                </option>
+
+            </select>
+
+            <button type="submit">
+
+                Recover Key Matrix
+
+            </button>
+
+        </form>
+
+    </div>
+
+    {% if recovered_key is not none %}
+
+    <div class="result-box">
+
+        <h2>
+            Attack Successful
+        </h2>
+
+        <h3>
+            Known Plaintext:
+        </h3>
+
+        <pre>
+{{ plaintext }}
+        </pre>
+
+        <h3>
+            Ciphertext:
+        </h3>
+
+        <pre>
+{{ ciphertext }}
+        </pre>
+
+        <h3>
+            Recovered Key Matrix
+        </h3>
+
+        <pre>
+{{ recovered_key }}
+        </pre>
+
+    </div>
+
+    <div class="steps-section">
+
+        <h2>
+            Cryptanalysis Steps
+        </h2>
+
+        {% for step in steps %}
+
+            <pre>{{ step }}</pre>
+
+        {% endfor %}
+
+    </div>
+
+    {% elif steps %}
+
+    <div class="error-box">
+
+        <h2>
+            Attack Failed
+        </h2>
+
+        <p>
+
+            The plaintext matrix is not
+            invertible modulo 26.
+
+            Therefore:
+
+        </p>
+
+        <div class="formula-box">
+
+            P⁻¹ does not exist
+
+        </div>
+
+        <p>
+
+            Since the inverse matrix cannot
+            be computed, the key recovery
+            process fails.
+
+        </p>
+
+        <h3>
+            Mathematical Reason
+        </h3>
+
+        <p>
+
+            For a matrix to be invertible
+            under modulo 26:
+
+        </p>
+
+        <div class="formula-box">
+
+            gcd(det(P), 26) = 1
+
+        </div>
+
+        <p>
+
+            The determinant of the plaintext
+            matrix shares common factors
+            with 26, so modular inverse
+            does not exist.
+
+        </p>
+
+        <h3>
+            Attack Attempt Steps
+        </h3>
+
+        {% for step in steps %}
+
+            <pre>{{ step }}</pre>
+
+        {% endfor %}
+
+    </div>
+
+    {% endif %}
+
+    <div class="nav-grid">
+
+        <a href="/"
+           class="nav-card">
+
+            Home
+
+        </a>
+
+        <a href="/sensitivity"
+           class="nav-card">
+
+            Sensitivity Analysis
+
+        </a>
+
+        <a href="/performance"
+           class="nav-card">
+
+            Performance Analysis
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+        Performance Analysis
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='style.css'
+        ) }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>
+        Performance Analysis
+    </h1>
+
+    <form method="POST">
+
+        <label>
+            Plaintext
+        </label>
+
+        <textarea
+            name="plaintext"
+            required>
+        </textarea>
+
+        <label>
+            Matrix Size
+        </label>
+
+        <select name="size">
+
+            <option value="2">
+                2x2
+            </option>
+
+            <option value="3">
+                3x3
+            </option>
+
+        </select>
+
+        <label>
+            Matrix Values
+        </label>
+
+        <input
+            type="text"
+            name="matrix"
+            required
+        >
+
+        <button type="submit">
+
+            Analyze Performance
+
+        </button>
+
+    </form>
+
+    {% if result %}
+
+    <h2>
+        Ciphertext:
+        {{ result.ciphertext }}
+    </h2>
+
+    <h2>
+        Encryption Time:
+        {{ result.encrypt_time }}
+    </h2>
+
+    <h2>
+        Decryption Time:
+        {{ result.decrypt_time }}
+    </h2>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

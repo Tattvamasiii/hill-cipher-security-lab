@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+        Sensitivity Analysis
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static',
+        filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>
+        Key Sensitivity Analysis
+    </h1>
+
+    <h2>
+        Plaintext:
+        {{ result.plaintext }}
+    </h2>
+
+    <h2>
+        Ciphertext 1:
+        {{ result.cipher1 }}
+    </h2>
+
+    <h2>
+        Ciphertext 2:
+        {{ result.cipher2 }}
+    </h2>
+
+    <h2>
+        Different Characters:
+        {{ result.differences }}
+    </h2>
+
+    <h2>
+        Avalanche Effect:
+        {{ result.percentage }}%
+    </h2>
+
+</div>
+
+</body>
+</html>
